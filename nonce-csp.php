@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
 
 // ---------- Configurações (ajuste conforme necessário) ----------
 if (!defined('CSP_NONCE_CUSTOM_DIRECTIVES')) {
-    define('CSP_NONCE_CUSTOM_DIRECTIVES', "default-src 'self'; style-src 'self' https://fonts.googleapis.com https://app.privally.global 'strict-dynamic'; font-src 'self' data: fonts.gstatic.com; img-src 'self' data: https://secure.gravatar.com https://cdn-app-privally-io.s3.amazonaws.com; connect-src 'self' https://api.privally.global https://static.privally.io;");
+    define('CSP_NONCE_CUSTOM_DIRECTIVES', "default-src 'self'; font-src 'self' data: fonts.gstatic.com; img-src 'self' data: https://secure.gravatar.com https://cdn-app-privally-io.s3.amazonaws.com; connect-src 'self' https://api.privally.global https://static.privally.io;");
 }
 
 if (!defined('CSP_NONCE_ENABLE_OUTPUT_BUFFER_FALLBACK')) {
@@ -59,8 +59,9 @@ add_action('send_headers', function() {
 
     // Observação: 'strict-dynamic' só tem efeito quando usado com nonce or hashes e 'unsafe-inline' não deve ser usado.
     $script_directive = "script-src 'self' 'nonce-{$nonce}' 'strict-dynamic' https:;";
+    $style_directive = "style-src 'self' 'nonce-{$nonce}' https://fonts.googleapis.com https://app.privally.global;";
 
-    $directives = trim($script_directive . ' ' . CSP_NONCE_CUSTOM_DIRECTIVES);
+    $directives = trim($script_directive . ' ' . $style_directive . ' ' . CSP_NONCE_CUSTOM_DIRECTIVES);
 
     header("Content-Security-Policy: {$directives}");
 });
