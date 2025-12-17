@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
 
 // ---------- Configurações (ajuste conforme necessário) ----------
 if (!defined('CSP_NONCE_CUSTOM_DIRECTIVES')) {
-    define('CSP_NONCE_CUSTOM_DIRECTIVES', "default-src 'self'; style-src 'self' https://fonts.googleapis.com https://app.privally.global; font-src 'self' data: fonts.gstatic.com; img-src 'self' data: https://secure.gravatar.com https://cdn-app-privally-io.s3.amazonaws.com; connect-src 'self' https://api.privally.global https://static.privally.io;");
+    define('CSP_NONCE_CUSTOM_DIRECTIVES', "default-src 'self'; style-src 'self' https://fonts.googleapis.com https://app.privally.global 'strict-dynamic'; font-src 'self' data: fonts.gstatic.com; img-src 'self' data: https://secure.gravatar.com https://cdn-app-privally-io.s3.amazonaws.com; connect-src 'self' https://api.privally.global https://static.privally.io;");
 }
 
 if (!defined('CSP_NONCE_ENABLE_OUTPUT_BUFFER_FALLBACK')) {
